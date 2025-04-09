@@ -10,7 +10,7 @@ class Solution:
             visited.add(source)
             for neighbor in graph[source]:
                 if neighbor not in visited:
-                    found =  dfs(neighbor,visited)
+                    found = dfs(neighbor,visited)
                     if found:
                         return found
             return False
