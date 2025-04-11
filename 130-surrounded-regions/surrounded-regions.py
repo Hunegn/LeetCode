@@ -41,8 +41,7 @@ class Solution:
                 if board[i][j] == 'O':
                     surrounded = True
                     dfs(set(),i,j)
-                    print(i,j)
-                    print(surrounded)
+                    
                     if surrounded:
                         replace(set(),i,j)
                 
