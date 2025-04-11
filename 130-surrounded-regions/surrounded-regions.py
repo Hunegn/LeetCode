@@ -19,29 +19,30 @@ class Solution:
             for row_change, col_change in dirc:
                 new_row = row+row_change
                 new_col = col+col_change
-                if (new_row,new_col) not in visited:
-                    if not inbound(new_row,new_col):
+                
+                if not inbound(new_row,new_col):
                         surrounded = False
-                        return 
-                    elif board[new_row][new_col] == 'O':
+                        
+                elif (new_row,new_col) not in visited:
+                    
+                    if board[new_row][new_col] == 'O':
                         dfs(visited,new_row,new_col)
-        def replace(visited, row, col):
+        def replace(visiteds, row, col):
             board[row][col] = 'X'
-            visited.add((row,col))
+            visiteds.add((row,col))
             for row_change, col_change in dirc:
                 new_row = row+row_change
                 new_col = col+col_change
-                if (new_row,new_col) not in visited:
+                if (new_row,new_col) not in visiteds:
                     if board[new_row][new_col] == 'O' and inbound(new_row,new_col):
-                        replace(visited,new_row,new_col)
+                        replace(visiteds,new_row,new_col)
         m = len(board)
         n = len(board[0])
         for i in range(m):
             for j in range(n):
-                if board[i][j] == 'O':
+                if board[i][j] == 'O' and (i,j) not in visited:
                     surrounded = True
-                    dfs(set(),i,j)
-                    
+                    dfs(visited,i,j)
                     if surrounded:
                         replace(set(),i,j)
                 
