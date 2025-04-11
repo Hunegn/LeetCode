@@ -4,8 +4,7 @@ class Solution:
         for i, num in enumerate(manager):
             if num != -1:
                 adj_list[num].append(i)
-        total_time = informTime[head]
-        print(total_time)
+    
         def dfs(node,visited):
             if node in visited:
                 return 0
@@ -15,6 +14,6 @@ class Solution:
                 if neighbor not in visited:
                     max_time = max(max_time,dfs(neighbor,visited))
             return informTime[node] + max_time
-        print(adj_list)
+      
         
         return dfs(head,set())
